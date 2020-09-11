@@ -14,7 +14,7 @@ fun printname():String {
     while ((i < name.length) and (test == true)) {
         if ((!(((name[i]) >= ('a')) and ((name[i]) <= ('z')))) and (!(((name[i]) >= ('A')) and ((name[i]) <= ('Z')))))  {
             test = false
-            println("invalid name")
+            println("invalid name, please reenter your name")
             break
         }
         i++
@@ -26,7 +26,7 @@ fun printname():String {
         while ((i < name.length) and (test == true)) {
             if ((!(((name[i]) >= ('a')) and ((name[i]) <= ('z')))) and (!(((name[i]) >= ('A')) and ((name[i]) <= ('Z'))))) {
                 test = false
-                println("invalid name")
+                println("invalid name, please reenter your name")
                 break
             }
             i++
@@ -53,7 +53,7 @@ board = Board()
 board.Drawboard()
 
 
-    fun switchTurns(name1:String,name2:String) {
+    fun switchTurns() {
             currentPlayer = if (currentPlayer == name1) {
                 name2
             } else {
@@ -71,7 +71,7 @@ board.Drawboard()
     }
 
     while (!board.GameOver) {
-        switchTurns(name1,name2)
+        switchTurns()
         println("$currentPlayer's turn")
         println("Enter row number:")
         var row=test_num()
