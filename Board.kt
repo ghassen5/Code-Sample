@@ -1,6 +1,6 @@
 import kotlin.math.pow
 
-class Board(val n: Int=3) {
+class Board(private val n: Int=3) {
 
     val start = "___"
     var board = Array(n) { Array(n) { start } }
@@ -20,14 +20,7 @@ class Board(val n: Int=3) {
             println()
         }
     }
-    fun checkNumbers(value: String?): Boolean {
-        return when(value){
-            "0"->true
-            "1"->true
-            "2"->true
-            else -> false
-        }
-    }
+
 
     fun placePiece(x: Int, y: Int, move: String) {
         if (!GameOver  && board[x][y] == start ) {

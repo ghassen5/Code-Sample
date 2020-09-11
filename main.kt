@@ -6,61 +6,54 @@ const val move2="O"
 var name1=""
 var name2=""
 
-fun printname1():Boolean {
-    println("Player1 please enter your name")
-    return when (readLine()!!.toString()) {
-        "0" -> false
-        "1" -> false
-        "2" -> false
-        "3" -> false
-        "4" -> false
-        "5" -> false
-        "6" -> false
-        "7" -> false
-        "8" -> false
-        "9" -> false
-        " " -> false
-        else -> true
+fun printname():String {
+    var name = ""
+    var test = true
+    name= readLine()!!.toString()
+    var i = 0
+    while ((i < name.length) and (test == true)) {
+        if ((!(((name[i]) >= ('a')) and ((name[i]) <= ('z')))) and (!(((name[i]) >= ('A')) and ((name[i]) <= ('Z')))))  {
+            test = false
+            println("invalid name")
+            break
+        }
+        i++
+    }
+    while (test == false) {
+        name= readLine()!!.toString()
+        i = 0
+        test = true
+        while ((i < name.length) and (test == true)) {
+            if ((!(((name[i]) >= ('a')) and ((name[i]) <= ('z')))) and (!(((name[i]) >= ('A')) and ((name[i]) <= ('Z'))))) {
+                test = false
+                println("invalid name")
+                break
+            }
+            i++
+        }
+    }
+    return (name)
+}
+fun test_num():Int {
+    var num: Int
+    num = readLine()!!.toInt()
+    while ((num != 1) and (num != 2) and (num != 3)) {
+        println("number out of range , reenter a number")
+        num = readLine()!!.toInt()
+    }
+    return (num)
+}
 
-    }
-}
-fun check1() {
-    while (printname1() == false) {
-        println("invalid entry, please reenter your name")
-    }
-}
-fun printname2():Boolean {
-    println("Player2 please enter your name")
-    return when (readLine()!!.toString()) {
-        "0" -> false
-        "1" -> false
-        "2" -> false
-        "3" -> false
-        "4" -> false
-        "5" -> false
-        "6" -> false
-        "7" -> false
-        "8" -> false
-        "9" -> false
-        " " -> false
-        else -> true
-    }
-}
-fun check2() {
-   when (printname2()){
-       false->println("invalid entry, please reenter your name")
-       true->name1
-   }
-
-}
 fun main() {
-    check1()
-    check2()
+    println("Player1 please enter your name")
+    name1=printname()
+    println("player2 please enter your name")
+    name2=printname()
 board = Board()
 board.Drawboard()
 
 
-    fun switchTurns() {
+    fun switchTurns(name1:String,name2:String) {
             currentPlayer = if (currentPlayer == name1) {
                 name2
             } else {
@@ -70,22 +63,21 @@ board.Drawboard()
     }
     fun determineMove() {
         if (currentPlayer == name1) {
-            move= move1
+            move = move1
+        } else if (currentPlayer == name2) {
+            move = move2
         }
-        else if (currentPlayer == name2) {
-            move=move2}
 
     }
 
-
     while (!board.GameOver) {
-        switchTurns()
+        switchTurns(name1,name2)
         println("$currentPlayer's turn")
         println("Enter row number:")
-        var row = readLine()!!.toInt()
-        println("Enter column number:")
-        var col = readLine()!!.toInt()
-        determineMove()
+        var row=test_num()
+       println("Enter column number:")
+       var col=test_num()
+      determineMove()
         board.placePiece(row - 1, col - 1, move)
 
     }
