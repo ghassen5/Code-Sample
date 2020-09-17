@@ -26,7 +26,7 @@ fun printname():String {
         while ((i < name.length) and (test == true)) {
             if ((!(((name[i]) >= ('a')) and ((name[i]) <= ('z')))) and (!(((name[i]) >= ('A')) and ((name[i]) <= ('Z'))))) {
                 test = false
-                println("invalid name, please reenter your name")
+                println("invalid name,please reenter your name")
                 break
             }
             i++
@@ -34,6 +34,7 @@ fun printname():String {
     }
     return (name)
 }
+
 fun test_num():Int {
     var num: Int
     num = readLine()!!.toInt()
@@ -43,6 +44,13 @@ fun test_num():Int {
     }
     return (num)
 }
+/* val matrix = arrayOf(intArrayOf(0, 0, 0), intArrayOf(0, 0, 0), intArrayOf(0, 0, 0))
+        for (column in matrix) {
+            for (row in column) {
+                print("$row ")
+            }
+            println()
+        }*/
 
 fun main() {
     println("Player1 please enter your name")
@@ -53,7 +61,7 @@ board = Board()
 board.Drawboard()
 
 
-    fun switchTurns() {
+    fun switchTurns(){
             currentPlayer = if (currentPlayer == name1) {
                 name2
             } else {
@@ -74,11 +82,13 @@ board.Drawboard()
         switchTurns()
         println("$currentPlayer's turn")
         println("Enter row number:")
-        var row=test_num()
-       println("Enter column number:")
-       var col=test_num()
-      determineMove()
+        val row=test_num()
+        println("Enter column number:")
+        val col=test_num()
+       // board.positionValid(row,col)
+        determineMove()
         board.placePiece(row - 1, col - 1, move)
+
 
     }
 }
