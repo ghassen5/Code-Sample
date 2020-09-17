@@ -23,7 +23,7 @@ class Board(private val n: Int=3) {
 
 
     fun placePiece(x: Int, y: Int, move: String) {
-        if (!GameOver  && board[x][y] == start ) {
+        if (!GameOver && board[x][y] == start) {
             board[x][y] = move
             movecount++
             Drawboard()
@@ -36,6 +36,11 @@ class Board(private val n: Int=3) {
         }
     }
 
+   /* fun positionValid(x: Int, y: Int){
+            while((board[x][y] != start) ) {
+                println("already taken, please reenter position")
+            }
+     }*/
 
     fun Win(x: Int, y: Int, move: String): Boolean {
 
